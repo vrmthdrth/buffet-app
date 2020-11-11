@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "ShowFeedbacks";
+}
+
+<h1>ShowFeedbacks</h1>
+
+<table class="table-bordered" width="100%">
+    <tr>
+        <td>Name</td>
+        <td>Message</td>
+    </tr>
+    @foreach (FeedbackViewModel fb in ViewBag.Feedbacks)
+    {
+        <tr>
+            <td>@fb.UserName</td>
+            <td>@fb.Message</td>
+        </tr>
+    }
+</table>

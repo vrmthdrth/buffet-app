@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "ShowReserves";
+}
+
+<h1>ShowReserves</h1>
+
+<div>
+    <h4>Reserves</h4>
+    <hr />
+    @{
+        <table class="table-bordered" width="100%">
+                <tr>
+                    <td>Code(id)</td>
+                    <td>DateTime</td>
+                    <td>Email</td>
+                    <td>Name</td>
+                    <td>Surname</td>
+                    <td>IsAccepted</td>
+                    <td>Details</td>
+                    <td>Accept</td>
+                </tr>
+            @foreach (ReserveModel reserve in ViewBag.Reserves)
+            {
+            <tr>
+                <td>@reserve.Id</td>
+                <td>@reserve.DateTime</td>
+                <td>@reserve.Email</td>
+                <td>@reserve.Name</td>
+                <td>@reserve.Surname</td>
+                <td>
+                    @if (reserve.IsAccepted != null)
+                    {
+                        @reserve.IsAccepted
+                    }
+                    else
+                    {
+                        <label> In process / client didn't come in time </label>
+                    }
+                </td>
+
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ShowReserveDetails" asp-route-id="@reserve.Id">Details</a>
+                </td>
+                <td>
+                    @if (reserve.IsAccepted == null && reserve.DateTime >= DateTime.Now.AddMinutes(-10))
+                    {
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AcceptReserve" asp-route-id="@reserve.Id">Accept</a>
+                    }
+                    else if (reserve.IsAccepted == true)
+                    {
+                        <a>Accepted</a>
+                    }
+                    else
+                    {
+                        <a>Declined</a>
+                    }
+                </td>
+            </tr>
+            }
+        </table>
+    }
+
+</div>

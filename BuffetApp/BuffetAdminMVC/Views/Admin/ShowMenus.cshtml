@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "ShowMenus";
+}
+
+<h1>ShowMenus</h1>
+
+<div>
+    <h4>Menus</h4>
+    <hr />
+    @{
+
+        <table class="table-bordered" width="100%">
+            <tr>
+                <td>Id</td>
+                <td>Date</td>
+                <td>Details</td>
+                <td>Update</td>
+            </tr>
+            @foreach (var menu in ViewBag.Menus)
+            {
+                <tr>
+                    <td>@menu.Id</td>
+                    <td>@menu.Date</td>
+
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ShowMenuDetails" asp-route-id="@menu.Id">Details</a>
+                    </td>
+                    <td>
+                        @if (menu.Date == DateTime.Now.AddDays(1).Date)
+                        {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="UpdateMenuFoodsAmountForTommorrow" asp-route-id="@menu.Id">Указать количество порций</a>
+                        }
+                        else
+                        {
+                            <a>-</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+        <div style="text-align: right">
+            @Html.ActionLink("Create menu for date", "CreateMenuForDate", "Admin")
+        </div>
+    }
+
+</div>

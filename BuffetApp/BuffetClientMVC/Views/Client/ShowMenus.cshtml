@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "ShowMenus";
+}
+
+<h1>ReadMenusForWeek</h1>
+
+@{
+    <table class="table-bordered" width="100%">
+        <tr>
+            <td>Id</td>
+            <td>Date</td>
+            <td>DayOfWeek</td>
+            <td>Details</td>
+        </tr>
+        @foreach (BuffetAuxiliaryLib.DTOs.MenuDTO menu in ViewBag.Menus)
+        {
+            <tr>
+                <td>@menu.Id</td>
+                <td>@menu.Date.ToString("d")</td>
+                <td>
+                    @menu.Date.DayOfWeek 
+                    @if(menu.Date.Date == DateTime.Now.Date)
+                    {
+                        <label> (Today) </label>
+                    }
+                </td>
+
+                <td>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="ReadMenu" asp-route-id="@menu.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </table>
+}

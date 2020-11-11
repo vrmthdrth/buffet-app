@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "ViewAdmins";
+}
+
+<h1>ViewAdmins</h1>
+
+<div>
+    <h4>Admins</h4>
+    <hr />
+    @{
+
+        <table class="table-bordered" width="100%">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Surname</td>
+                <td>Email</td>
+                <td>RoleId</td>
+                <td>-</td>
+            </tr>
+            @foreach (var user in ViewBag.Admins)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.Email</td>
+                    <td>@user.RoleId</td>
+
+                    <td>
+                        @if (user.RoleId != 1)
+                        {
+                            <a href="/Admin/DeleteAdmin/@user.Id">Удалить</a>
+                        }
+                        else
+                        {
+                            <a>-</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div style="text-align: right">
+            @Html.ActionLink("Create", "AddAdmin", "Admin")
+        </div>
+
+    }
+
+</div>

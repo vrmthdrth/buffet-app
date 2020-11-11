@@ -1,0 +1,31 @@
+﻿{
+  "iisSettings": {
+    "iisExpress": {
+      "applicationUrl": "https://localhost:5005/",
+      "sslPort": 44300
+    },
+    "iis": {
+      "applicationUrl": "https://localhost:5005/",
+      "sslPort": 44300
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "BuffetClientMVC": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:5005/client/index",
+      "sslPort": 44300,
+      "applicationUrl": "https://localhost:5005;http://localhost:5004",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

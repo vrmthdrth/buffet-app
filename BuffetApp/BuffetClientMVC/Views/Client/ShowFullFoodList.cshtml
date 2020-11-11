@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "ShowFullFoodList";
+    List<BuffetAuxiliaryLib.DTOs.FoodDTO> favourites = ViewBag.FavouriteList as List<BuffetAuxiliaryLib.DTOs.FoodDTO>;
+}
+
+<h1>ShowFullFoodList</h1>
+@{
+    <table class="table-bordered" width="100%">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Weight</th>
+            <th>CategoryName</th>
+            <th>FavouriteStatus</th>
+        </tr>
+        @foreach (BuffetAuxiliaryLib.DTOs.FoodDTO food in ViewBag.FoodList)
+        {
+            <tr>
+                <td>@food.Name</td>
+                <td>@food.Description</td>
+                <td>@food.Weight</td>
+                <td>@food.CategoryName</td>
+                <td>
+                    @*<div class="add-remove-favourite">
+
+        </div>*@
+                    @if (favourites.Count == 0 || favourites.FirstOrDefault(fav => fav.Id == food.Id) == null)
+                    {
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="AddFoodToFavourites" asp-route-id="@food.Id">Add to favourite</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="RemoveFoodFromFavourites" asp-route-id="@food.Id">Remove</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+
+
+
+
+
+
+@*<script>
+    function sendMessage() {
+        var feedback = {
+            Message : $('#feedbackTextId').val(),
+            Anonymously: $('#feedbackCheckboxId').prop('checked') == true ? true : false
+        };
+
+        $.ajax({
+            url: '/Client/WriteFeedback',
+            method: 'post',
+            data: { feedback },
+            success: function () {
+                var newHTML = 'Thank you for your feedback!';
+                $('div.feedbackFieldClass').replaceWith(newHTML);
+            },
+            error: function () {
+                var newHTML = 'Something gone wrong. Try later.';
+                $('div.feedbackFieldClass').replaceWith(newHTML);
+            }
+        })
+    }
+</script>
+
+<div class="feedbackFieldClass">
+    <input id="feedbackTextId" type="text" name="feedbackTextinput" class="input-group-text" />
+    <br />
+    <label>Anonymously </label>
+    <input id="feedbackCheckboxId" type="checkbox" name="anonymouslyCheckbox" class="custom-checkbox" />
+    <br />
+    <input type="button" name="sendButton" onclick="sendMessage()" class="btn btn-primary" value="Send feedback" />
+</div>*@

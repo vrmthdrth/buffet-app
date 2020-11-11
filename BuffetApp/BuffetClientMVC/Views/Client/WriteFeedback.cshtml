@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "WriteFeedback";
+}
+
+<h1>WriteFeedback</h1>
+
+<script>
+    function sendMessage() {
+        var feedback = {
+            Message : $('#feedbackTextId').val(),
+            Anonymously: $('#feedbackCheckboxId').prop('checked') == true ? true : false
+        };
+
+        $.ajax({
+            url: '/Client/WriteFeedback',
+            method: 'post',
+            data: { feedback },
+            success: function () { 
+                var newHTML = 'Thank you for your feedback!';
+                $('div.feedbackFieldClass').replaceWith(newHTML);
+            },
+            error: function () {
+                var newHTML = 'Something gone wrong. Try later.';
+                $('div.feedbackFieldClass').replaceWith(newHTML);
+            }
+        })
+    }
+</script>
+
+<div class="feedbackFieldClass">
+    <input id="feedbackTextId" type="text" name="feedbackTextinput" class="input-group-text"/>
+    <br />
+    <label >Anonymously </label>
+    <input id="feedbackCheckboxId" type="checkbox" name="anonymouslyCheckbox" class="custom-checkbox"/>
+    <br />
+    <input type="button" name="sendButton" onclick="sendMessage()" class="btn btn-primary" value="Send feedback"/>
+</div>

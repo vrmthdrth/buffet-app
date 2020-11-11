@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "ReadMenu";
+}
+
+<h1>ReadMenu</h1>
+
+@{
+    <table class="table-bordered" width="100%">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th hidden>CategoryId</th>
+            <th>CategoryName</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th>AvailableAmount</th>
+        </tr>
+        @foreach (BuffetAuxiliaryLib.DTOs.MenuFoodDTO menuFood in ViewBag.Menu)
+        {
+            <tr>
+                <td>@menuFood.Name</td>
+                <td>@menuFood.Description</td>
+                <td hidden>@menuFood.CategoryId</td>
+                <td>@menuFood.CategoryName</td>
+                <td>@menuFood.Weight</td>
+                <td>@menuFood.Price</td>
+                <td>@menuFood.AvailableAmount</td>
+            </tr>
+        }
+    </table>
+}

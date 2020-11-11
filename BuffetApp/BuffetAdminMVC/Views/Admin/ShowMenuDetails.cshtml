@@ -1,0 +1,40 @@
+﻿@using System.Data;
+@using System;
+@model DataTable
+@{
+    ViewData["Title"] = "ShowMenuDetails";
+}
+
+<div>
+    <h4>MenuDetails for @ViewBag.MenuDate</h4>
+    <hr />
+    @{
+
+        <table class="table-bordered" width="100%">
+                <tr>
+                    @foreach (DataColumn col in Model.Columns)
+                    {
+                        <th>@col.ColumnName</th>
+                        //if (col.ColumnName.Equals("Food") || col.ColumnName.Equals("Base"))
+                        //{
+
+                        //}
+                    }
+                </tr>
+
+            @{
+                foreach (DataRow row in Model.Rows)
+                {
+                    <tr>
+                        @foreach (object cell in row.ItemArray)
+                        {
+                            <td>@cell</td>
+                        }
+                    </tr>
+                }
+            }
+
+        </table>
+    }
+
+</div>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "CreateReserve";
+}
+
+<h1>Menu for @DateTime.Today.Date.ToString("d")</h1>
+
+@{
+    <form asp-action="CreateReserve">
+
+        <table class="table-bordered" width="100%">
+            <tr>
+                <th hidden>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th hidden>CategoryId</th>
+                <th>CategoryName</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th>AvailableAmount</th>
+                <td>Quantity</td>
+            </tr>
+
+            @foreach (BuffetAuxiliaryLib.DTOs.MenuFoodDTO menuFood in ViewBag.Menu)
+            {
+                <tr>
+                    <td hidden><input hidden name="ids" value="@menuFood.Id" /></td>
+                    <td>@menuFood.Name</td>
+                    <td>@menuFood.Description</td>
+                    <td hidden>@menuFood.CategoryId</td>
+                    <td>@menuFood.CategoryName</td>
+                    <td>@menuFood.Weight</td>
+                    <td>@menuFood.Price</td>
+                    <td>
+                        <input name="available" value="@menuFood.AvailableAmount" readonly />
+                        @if (menuFood.AvailableAmount == 0)
+                        {
+                            @Html.ActionLink("I didn't have enough", $"NotEnough?id={menuFood.Id}")
+                        }
+                    </td>
+
+                    <td><input type="number" value="0" name="quantity" /></td>
+
+                </tr>
+            }
+        </table>
+
+        <input type="submit" class="btn btn-primary" />
+
+        <b>@ViewBag.Message</b>
+
+
+    </form>
+
+
+
+}

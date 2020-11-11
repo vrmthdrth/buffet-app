@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateMenu";
+}
+<script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<h1>CreateMenuForDate</h1>
+
+<h4>MenuViewModel</h4>
+<hr />
+<head>
+    <script language="javascript">
+
+        function GetTableValues() {
+            var tbl = $('#menuDataTable tbody tr').map(function (idxRow, ele) {
+                //
+                // start building the retVal object
+                //
+                var retVal = { id: ++idxRow };
+                //
+                // for each cell
+                //
+                var $td = $(ele).find('td').map(function (idxCell, ele) {
+                    var input = $(ele).find(':input');
+                    //
+                    // if cell contains an input or select....
+                    //
+                    if (input.length == 1) {
+                        var attr = $('#menuDataTable thead tr th').eq(idxCell).text();
+                        retVal[attr] = input.val();
+                    }
+                    else {
+                        var attr = $('#menuDataTable thead tr th').eq(idxCell).text();
+                        retVal[attr] = $(ele).text();
+                    }
+                });
+                return retVal;
+            }).get();
+
+            document.getElementsByName("updatedMenuJSON")[0].value = JSON.stringify(tbl);
+        }
+
+    </script>
+</head>
+<body>
+
+    <form asp-action="UpdateMenuFoodsAmountForTommorrow" method="post">
+
+        <input hidden id="mId" type="number" name="menuId" value="@ViewBag.MenuId" />
+
+        <input type="hidden" name="updatedMenuJSON" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <table id="menuDataTable" name="dt" width="100%" border="1">
+            <thead>
+                <tr>
+                    <th>FoodName</th>
+                    <th>Weight</th>
+                    <th>Description</th>
+                    <th>CategoryId</th>
+                    <th>Price</th>
+                    <th>Base</th>
+                    <th>Available</th>
+                    <th>Insufficient</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BuffetDAL.AdditionalModels.MenuUpdateModel mum in ViewBag.MenuDetails)
+                {
+                    <tr>
+                        <td hidden><input type="number" name="id" value="@mum.Id" hidden /></td>
+                        <td>@mum.FoodName</td>
+                        <td>@mum.Weight</td>
+                        <td>@mum.Description</td>
+                        <td>@mum.CategoryId</td>
+                        <td>@mum.Price</td>
+                        <td><input type="number" name="baseAmount" value="@mum.Base"></td> 
+                        <td>@mum.Available</td>
+                        <td>@mum.Insufficient</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <input type="submit" value="Update" onclick="GetTableValues()" class="btn btn-primary" />
+        </div>
+
+    </form>
+    <label>@ViewBag.Message</label>
+</body>
+

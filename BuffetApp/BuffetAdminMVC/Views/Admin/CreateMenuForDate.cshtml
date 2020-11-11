@@ -1,0 +1,166 @@
+﻿@using System.Data
+
+@{
+    ViewData["Title"] = "CreateMenuForDate";
+    List<BuffetDAL.Models.Category> categories = (List<BuffetDAL.Models.Category>)ViewBag.Categories;
+}
+<script type="text/javascript" src="https://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<h1>CreateMenuForDate</h1>
+
+<h4>MenuViewModel</h4>
+<hr />
+<head>
+    <title> Add/Remove dynamic rows in HTML table </title>
+
+    @*<style>
+        .default{
+            color: black
+        }
+        .drinks{
+            color: red
+        }
+        .firstcourse{
+            color: pink
+        }
+        .secondcourse{
+            color: green
+        }
+        .desserts{
+            color: pink
+        }
+    </style>*@
+
+    <script language="javascript">
+
+        function addRow(tableID) {
+
+            var table = document.getElementById(tableID);
+
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+
+            var colCount = table.rows[0].cells.length;
+
+            for (var i = 0; i < colCount; i++) {
+
+                var newcell = row.insertCell(i);
+
+                    newcell.innerHTML = table.rows[1].cells[i].innerHTML;
+                switch (newcell.childNodes[0].type) {
+                    case "text":
+                        newcell.childNodes[0].value = "";
+                        break;
+                    case "checkbox":
+                        newcell.childNodes[0].checked = false;
+                        break;
+                    case "select-one":
+                        newcell.childNodes[0].selectedIndex = 0;
+                        break;
+                }
+            }
+        }
+
+        function GetTableValues() {
+            var menuDate = document.getElementById("mDate").value;
+            var today = new Date();
+
+            var tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            var tomorrowISO = tomorrow.toISOString().split('T')[0];
+
+            var throughWeek = new Date();
+            throughWeek.setDate(today.getDate() + 7);
+            var throughWeekISO = throughWeek.toISOString().split('T')[0];
+
+            var menuDateAsDate = new Date(menuDate);
+            menuDateAsDate.setHours(0, 0, 0, 0);
+            var tomorrowDateAsDate = new Date(tomorrow);
+            tomorrowDateAsDate.setHours(0, 0, 0, 0);
+            var throughWeekDateAsDate = new Date(throughWeek);
+            throughWeekDateAsDate.setHours(0, 0, 0, 0);
+
+            if (menuDateAsDate < tomorrowDateAsDate || menuDateAsDate > throughWeekDateAsDate || menuDateAsDate == "Invalid Date") {
+                alert("Date must be in range from " + tomorrowISO + " to " + throughWeekISO + ". Please enter valid data.");
+                return false;
+            }
+            else {
+                alert("everything is cool buddy! setting new menulist for " + menuDate);
+            }
+        }
+
+
+        function deleteRow(tableID) {
+            try {
+                var table = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+
+                for (var i = 1; i < rowCount; i++) {
+                    var row = table.rows[i];
+                    var chkbox = row.cells[0].childNodes[0];
+                    if (null != chkbox && true == chkbox.checked) {
+                        if (rowCount <= 2) { 
+                            alert("Cannot delete all the rows.");
+                            break;
+                        }
+                        table.deleteRow(i);
+                        rowCount--;
+                        i--;
+                    }
+                }
+            } catch (e) {
+                alert(e);
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    <form asp-action="CreateMenuForDate" method="post">
+
+        <input id="mDate" type="date" name="menuDate" />
+
+        <input type="button" value="Add Row" onclick="addRow('menuDataTable')" />
+
+        <input type="button" value="Delete Row" onclick="deleteRow('menuDataTable')" />
+
+        <input type="hidden" name="menuDataTableJSON" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <table id="menuDataTable" name="dt" width="100%" border="1">
+            <thead>
+                <tr>
+                    <th>Delete</th>
+                    <th>Food</th>
+                    <th>Price</th>
+                    <th>Base amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" name="chk" /></td>
+                    <td>
+                        <select id="fselect" name="foods">
+                            @{
+                                foreach (BuffetDAL.Models.Food food in ViewBag.Foods)
+                                {
+                                    <option>@food.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td><input type="number" step="0.01" name="price" /></td>
+                    <td><input id="baseInputID" type="number" name="baseAmount"  class="baseinputclass"/></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <input type="submit" value="Create" onclick="GetTableValues()" class="btn btn-primary" />
+        </div>
+
+    </form>
+    <label>@ViewBag.Message</label>
+</body>
+

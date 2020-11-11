@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffetWebAPI", "BuffetWebAPI\BuffetWebAPI.csproj", "{0616DD4E-8093-4596-AAE7-F403461BFA12}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffetDAL", "BuffetDAL\BuffetDAL.csproj", "{9558E09E-51C2-45C1-BA50-AEB876330CE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffetReportsService", "BuffetReportsService\BuffetReportsService.csproj", "{29D277CF-0CA3-4D23-9CFE-48B2D1F5491B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffetAdminMVC", "BuffetAdminMVC\BuffetAdminMVC.csproj", "{E7D12F31-FDA5-41F3-A008-99F18E59B558}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuffetClientMVC", "BuffetClientMVC\BuffetClientMVC.csproj", "{D537AF00-B786-4C41-AC0C-469687E1BAAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuffetAuxiliaryLib", "BuffetAuxiliaryLib\BuffetAuxiliaryLib.csproj", "{746F2CD4-192E-4D93-AFC6-951456CC5266}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0616DD4E-8093-4596-AAE7-F403461BFA12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0616DD4E-8093-4596-AAE7-F403461BFA12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0616DD4E-8093-4596-AAE7-F403461BFA12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0616DD4E-8093-4596-AAE7-F403461BFA12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9558E09E-51C2-45C1-BA50-AEB876330CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9558E09E-51C2-45C1-BA50-AEB876330CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9558E09E-51C2-45C1-BA50-AEB876330CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9558E09E-51C2-45C1-BA50-AEB876330CE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D277CF-0CA3-4D23-9CFE-48B2D1F5491B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D277CF-0CA3-4D23-9CFE-48B2D1F5491B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D277CF-0CA3-4D23-9CFE-48B2D1F5491B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D277CF-0CA3-4D23-9CFE-48B2D1F5491B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D12F31-FDA5-41F3-A008-99F18E59B558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D12F31-FDA5-41F3-A008-99F18E59B558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D12F31-FDA5-41F3-A008-99F18E59B558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D12F31-FDA5-41F3-A008-99F18E59B558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D537AF00-B786-4C41-AC0C-469687E1BAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D537AF00-B786-4C41-AC0C-469687E1BAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D537AF00-B786-4C41-AC0C-469687E1BAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D537AF00-B786-4C41-AC0C-469687E1BAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{746F2CD4-192E-4D93-AFC6-951456CC5266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{746F2CD4-192E-4D93-AFC6-951456CC5266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{746F2CD4-192E-4D93-AFC6-951456CC5266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{746F2CD4-192E-4D93-AFC6-951456CC5266}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95254203-C646-4A0A-8B12-6CA65B094D89}
+	EndGlobalSection
+EndGlobal
