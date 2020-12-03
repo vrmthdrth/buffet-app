@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using BuffetAuxiliaryLib.DTOs;
@@ -68,6 +69,20 @@ namespace BuffetWebAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        //[HttpGet]
+        //[Route("stupidgetmenus")]
+        //public IActionResult StupidGetMenus()
+        //{
+        //    try
+        //    {
+        //        return Ok(_apiService.StupidGetMenus());
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        return BadRequest(e.Message);
+        //    }
+        //}
 
         #endregion Menus
 

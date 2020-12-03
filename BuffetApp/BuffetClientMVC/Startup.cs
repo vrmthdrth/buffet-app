@@ -1,21 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BuffetClientMVC.Services;
-using System.Net.Http;
-using System.Net;
-using Microsoft.AspNetCore.DataProtection;
-using System.IO;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
+using BuffetClientMVC.Hubs;
 
 namespace BuffetClientMVC
 {
@@ -32,7 +26,9 @@ namespace BuffetClientMVC
         public void ConfigureServices(IServiceCollection services)
         {
             string baseWebApiUrl = Configuration.GetSection("WebApiURL").Value;
-            IHttpContextAccessor contextAccessor = new HttpContextAccessor();//тупизна
+            IHttpContextAccessor contextAccessor = new HttpContextAccessor();
+
+            services.AddHttpContextAccessor();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
@@ -44,19 +40,21 @@ namespace BuffetClientMVC
             {
                 client.Timeout = TimeSpan.FromSeconds(180);
                 client.BaseAddress = new Uri(baseWebApiUrl);
-                if(contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "token") != null)
+                if (contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "token") != null)
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "token").Value);
                 }
             });
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ClientService>();
 
             services.AddHttpsRedirection(options =>
             {
                 options.HttpsPort = 44300;
             });
+
+            services.AddSignalR();
+            services.AddRazorPages();
 
             services.AddControllersWithViews();
         }
@@ -90,6 +88,7 @@ namespace BuffetClientMVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Client}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }

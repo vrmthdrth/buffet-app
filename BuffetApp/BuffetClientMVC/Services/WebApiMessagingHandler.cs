@@ -8,8 +8,6 @@ using Serilog;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
-
-using BuffetClientMVC.Extensions;
 using System.Net;
 using BuffetClientMVC.Models;
 using System.Reflection.Metadata.Ecma335;

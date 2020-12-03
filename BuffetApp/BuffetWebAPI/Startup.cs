@@ -85,7 +85,6 @@ namespace BuffetWebAPI
                        }
                     }
                 );
-                //c.ResolveConflictingActions(apiDescriptions=>apiDescriptions.First());
             });
 
             services.AddHttpsRedirection(options =>

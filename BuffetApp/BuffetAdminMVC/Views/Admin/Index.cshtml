@@ -1,6 +1,74 @@
-﻿
+﻿<style>
+    .mycontainer {
+        width: 640px;
+        margin: 0 auto;
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .chat-container {
+        height: 480px;
+        overflow: auto;
+        transform: rotate(180deg);
+        direction: rtl;
+    }
+
+    li.message {
+        border-bottom: solid 1px #ccc;
+        padding: 20px;
+        transform: rotate(180deg);
+        direction: ltr;
+    }
+
+    .inputcontainer {
+        transform: rotate(180deg);
+        width: 620px;
+    }
+</style>
+
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>Welcome, @User.Identity.Name</h3>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="mycontainer">
+            <div class="chat-container">
+                <div class="col-6">
+                    <ul id="messagesList"></ul>
+                </div>
+            </div>
+            <br />
+            <div>
+                <div hidden class="row">&nbsp;</div>
+                <div hidden class="row">
+                    <div class="col-2">User</div>
+                    <div class="col-4"><input disabled type="text" id="userInput" value="@User.Identity.Name" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">Message</div>
+                    <div class="col-4"><input type="text" id="messageInput" /></div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div hidden class="row">
+                    <div class="col-6">
+                        <input type="button" id="sendButton" value="Send Message" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+}
+else
+{
+    <h3>Welcome</h3>
+}

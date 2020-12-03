@@ -14,6 +14,8 @@ namespace BuffetDAL.Models
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
+        //public string Info { get; set; }
+
         public ICollection<MenuFood> MenuFoods { get; set; }
 
         public Menu()

@@ -1762,3 +1762,38 @@ System.IndexOutOfRangeException: Index was outside the bounds of the array.
 11/10/2020 17:14:58 () Application starting up.
 11/11/2020 13:37:03 () Application starting up.
 11/11/2020 13:40:50 () Application starting up.
+11/12/2020 11:30:16 () Application starting up.
+11/12/2020 11:50:12 () Application starting up.
+11/12/2020 12:02:58 () Application starting up.
+11/12/2020 12:23:52 () Application starting up.
+11/12/2020 12:35:37 () Application starting up.
+11/19/2020 12:29:11 () Application starting up.
+12/01/2020 10:30:55 () Application starting up.
+12/01/2020 10:31:39 () Application starting up.
+12/01/2020 10:32:57 () Application starting up.
+12/01/2020 10:35:39 () Application starting up.
+12/01/2020 10:37:19 () Application starting up.
+12/01/2020 10:48:15 () Application starting up.
+12/01/2020 10:49:24 () Application starting up.
+12/01/2020 10:49:53 () Application starting up.
+12/01/2020 10:55:00 () Recieved Login model is not valid.
+12/01/2020 10:55:08 () Recieved Login model is not valid.
+12/01/2020 10:56:03 () Application starting up.
+12/01/2020 10:58:16 () Application starting up.
+12/01/2020 11:04:48 () Application starting up.
+12/01/2020 11:07:11 () Application starting up.
+12/01/2020 11:10:58 () Application starting up.
+12/01/2020 11:12:54 () Application starting up.
+12/01/2020 11:14:45 () Application starting up.
+12/01/2020 11:16:49 () Unsuccessful status code was recieved from web api response. Code: BadRequest
+12/01/2020 11:18:30 () Unsuccessful status code was recieved from web api response. Code: BadRequest
+12/01/2020 11:36:35 () Application starting up.
+12/01/2020 11:59:42 () Application starting up.
+12/01/2020 12:12:22 () Application starting up.
+12/02/2020 10:34:06 () Application starting up.
+12/02/2020 10:34:51 () Application starting up.
+12/02/2020 10:38:06 () Application starting up.
+12/02/2020 10:51:48 () Application starting up.
+12/02/2020 12:19:54 () Application starting up.
+12/02/2020 17:25:49 () Application starting up.
+12/02/2020 17:34:00 () Application starting up.

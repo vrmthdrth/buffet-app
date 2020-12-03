@@ -9,7 +9,7 @@ using BuffetDAL.AdditionalModels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using BuffetAdminMVC.Services;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+using Microsoft.AspNetCore.Identity;
 
 namespace BuffetAdminMVC.Controllers
 {
@@ -468,7 +468,7 @@ namespace BuffetAdminMVC.Controllers
                 Log.Information("Admin/Login POST method execution started");
                 if (ModelState.IsValid)
                 {
-                    SignInResult result = await _adminService.ValidateAndAuthenticate(model.Email, model.Password);
+                    Microsoft.AspNetCore.Identity.SignInResult result = await _adminService.ValidateAndAuthenticate(model.Email, model.Password);
 
                     if (result.Succeeded && _adminService.IsUserInSAAdminRole(model.Email))
                     {

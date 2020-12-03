@@ -136,7 +136,7 @@ namespace BuffetClientMVC.Controllers
         {
             ViewBag.Menu = this._apiHandler.ReadMenu().Result;
 
-            if (this._apiHandler.IsUserHasReserveInProcessing().Result) /// Здесь для iva остановиться должен был
+            if (this._apiHandler.IsUserHasReserveInProcessing().Result) // Здесь для iva остановиться должен был
             {
                 ViewBag.Message = "You already have a reserve, come to take it, you have " + _apiHandler.GetTimeLeftForExistingUserReserve().Result + " seconds left.";
                 return View(); //return show existing

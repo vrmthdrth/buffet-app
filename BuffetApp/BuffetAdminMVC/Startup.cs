@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BuffetAdminMVC.Hubs;
 
 
 namespace BuffetAdminMVC
@@ -38,10 +39,10 @@ namespace BuffetAdminMVC
                 {
                     options.LoginPath = "/Admin/Login";
                     options.AccessDeniedPath = "/Admin/Forbidden";
-                    //options.ExpireTimeSpan = new TimeSpan(0, 1, 0);
                 });
 
             services.AddScoped<AdminService>();
+            services.AddSignalR();
 
             services.AddHttpsRedirection(options =>
             {
@@ -81,6 +82,8 @@ namespace BuffetAdminMVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Admin}/{action=Index}/{id?}");
+
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }

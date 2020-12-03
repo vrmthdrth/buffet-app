@@ -4,17 +4,12 @@ using BuffetDAL.Models;
 using BuffetDAL.Repos.EF;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,7 +62,7 @@ namespace BuffetWebAPI.Services
             return false;
         }
 
-        public async Task<Microsoft.AspNetCore.Identity.SignInResult> ValidateCredentialsForLogin(LoginDTO loginInfoDTO)
+        public async Task<SignInResult> ValidateCredentialsForLogin(LoginDTO loginInfoDTO)
         {
             return await _signInManager.PasswordSignInAsync(loginInfoDTO.Email, loginInfoDTO.Password, isPersistent: true, lockoutOnFailure: false);
         }
@@ -216,6 +211,20 @@ namespace BuffetWebAPI.Services
 
             return menuFoodDTOs;
         }
+
+        //public Menu StupidGetMenus()
+        //{
+        //    Menu menu = new Menu();
+        //    List<string> infoFields = new List<string>();
+
+        //    Menu hehe = _context.Menus.FirstOrDefault(m => m.Id == 1);
+        //    hehe.Info = "HAHAHAH";
+        //    _context.Entry(hehe).State = EntityState.Modified;
+        //    _context.SaveChanges();
+
+        //    return hehe;
+
+        //}
 
         #endregion Menus
 
